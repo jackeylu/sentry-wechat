@@ -51,6 +51,8 @@ class WechatPlugin(NotificationPlugin):
         """
         Process error.
         """
+        print(event)
+        print(group)
         if not self.is_configured(group.project):
             return
 
