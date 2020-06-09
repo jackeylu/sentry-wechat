@@ -51,16 +51,6 @@ class WechatPlugin(NotificationPlugin):
         """
         Process error.
         """
-        with open("/tmp/notify-dump.txt", "w") as f:
-            import sys
-            old = sys.stdout
-            sys.stdout = f
-            print("event object")
-            print(event)
-            print("group object")
-            print(group)
-            sys.stdout = old
-
         if not self.is_configured(group.project):
             return
 
@@ -76,7 +66,7 @@ class WechatPlugin(NotificationPlugin):
             "markdown": {
                 "content": u"#### {title} \n > {message} [href]({url})".format(
                     title=title,
-                    message=event.title or event.message,
+                    message=event.data,
                     url=u"{}events/{}/".format(
                         group.get_absolute_url(), event.event_id),
                 )
