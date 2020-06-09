@@ -51,8 +51,16 @@ class WechatPlugin(NotificationPlugin):
         """
         Process error.
         """
-        print(event)
-        print(group)
+        with open("/tmp/notify-dump.txt", "w") as f:
+            import sys
+            old = sys.stdout
+            sys.stdout = f
+            print("event object")
+            print(event)
+            print("group object")
+            print(group)
+            sys.stdout = old
+
         if not self.is_configured(group.project):
             return
 
